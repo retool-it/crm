@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+    web:
+        image: odoo
+        depends_on:
+            - db
+        ports:
+            - "8000:8069"
+    db:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_USER: odoo
+            POSTGRES_PASSWORD: odoo
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - "8080:8080"
+volumes:
+    data_web:
